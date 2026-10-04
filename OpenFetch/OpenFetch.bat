@@ -24,7 +24,7 @@ echo   OpenFetch - Einrichtung
 echo ==========================================
 echo.
 echo Von welchem GitHub-Repository sollen Dateien geladen werden?
-echo Beispiel: github.com/OWNER/REPOSITORY
+echo Standard: OWNER = Metrix31 , REPOSITORY = Openfetch-releases
 echo           Owner = OWNER, Repository = REPOSITORY
 echo.
 set "owner="
