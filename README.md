@@ -34,6 +34,7 @@ Each project is designed to solve real problems and provide practical alternativ
 
 | Project     | Description                             | Status     |
 | ----------- | --------------------------------------- | ---------- |
+| VaultForge | Password manager | ✅ Finished |
 | Coming soon | New tools are currently in development. | 🚧 Planned |
 
 More projects will be announced as development progresses.
