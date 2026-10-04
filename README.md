@@ -34,7 +34,8 @@ Each project is designed to solve real problems and provide practical alternativ
 
 | Project     | Description                             | Status     |
 | ----------- | --------------------------------------- | ---------- |
-| VaultForge | Password manager | ✅ Finished |
+| VaultForge  | Password manager                        | ✅ Released |
+| AstraxOS    | open source OS                          | 🚧 Planned |
 | Coming soon | New tools are currently in development. | 🚧 Planned |
 
 More projects will be announced as development progresses.
