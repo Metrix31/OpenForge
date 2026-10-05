@@ -37,7 +37,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | VaultForge  | Password manager                        | ✅ Released |
 | OpenFetch | OpenForge app releases and downloads | 🔨 In Developement |
 | AstraxOS    | Open-source operating system            | 🚧 Planned |
-| Coming soon | New tools are currently in development. | 🚧 Planned |
+| Coming soon | New tools are currently in development and planned. | 🚧 Planned |
 
 More projects will be announced as development progresses.
 
