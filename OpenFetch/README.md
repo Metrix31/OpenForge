@@ -12,7 +12,9 @@ A simple CLI tool for downloading release assets from GitHub repositories.
 Clone the repository:
 
 ```bash
-git clone https://github.com/Metrix31/OpenFetch.git
+git clone --filter=blob:none --sparse https://github.com/Metrix31/OpenForge.git
+cd OpenForge
+git sparse-checkout set OpenFetch
 cd OpenFetch
 ```
 
