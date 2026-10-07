@@ -36,7 +36,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | ----------- | --------------------------------------- | ---------- |
 | VaultForge  | Password manager                        | ✅ Released |
 | OpenFetch | OpenForge app releases and downloads | 🔨 In Developement ⚠️ Early Access |
-| OpenEdit   | Terminal text editor                | 🔨 In Development |
+| OpenEdit   | Terminal text editor                | ✅ Released |
 | AstraxOS    | Open-source operating system            | 🚧 Planned |
 | Coming soon | New tools are currently in development and planned. | 🚧 Planned |
 
