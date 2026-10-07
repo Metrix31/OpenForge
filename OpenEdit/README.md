@@ -30,8 +30,8 @@ No external Python packages are required to run OpenEdit.
 Clone the repository:
 
 ```bash
-git clone https://github.com/Metrix31/OpenEdit.git
-cd OpenEdit
+git clone https://github.com/Metrix31/OpenForge.git
+cd OpenForge/OpenEdit
 ```
 
 OpenEdit can be started directly with Python:
