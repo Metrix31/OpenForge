@@ -37,8 +37,9 @@ Each project is designed to solve real problems and provide practical alternativ
 | VaultForge  | Password manager                        | ✅ Released |
 | OpenFetch | OpenForge app releases and downloads      | 🔨 In Developement ⚠️ Early Access |
 | OpenEdit   | Terminal text editor                     | ✅ Released |
-| OpenNotes | Open-source markdown editor with gui | 🚧 Planned |
-| OpenArchive | Open-source ZIP, TAR, 7z program | 🚧 Planned |
+| NoteForge | Open-source markdown editor with gui | 🚧 Planned |
+| ArchiveForge | Open-source ZIP, TAR, 7z program | 🚧 Planned |
+| CodeForge | Open-source IDE                     | 🚧 Planned |
 | OpenForge app | desktop gui for entire OpenForge | 🚧 Planned |
 | AstraxOS    | Open-source operating system            | 🚧 Planned |
 | Coming soon | New tools are currently in development and planned. | 🚧 Planned |
