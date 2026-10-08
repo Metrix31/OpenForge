@@ -1,0 +1,46 @@
+{
+  "name": "note_forge",
+  "version": "1.0.0",
+  "description": "Open-source note taking app",
+  "author": {
+    "name": "Metrix31",
+    "email": "Metrix31Labs@proton.me"
+  },
+  "homepage": "metrix31.github.com/home",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  },
+  "private": true,
+  "devDependencies": {
+    "electron": "^42.11.12",
+    "electron-builder": "23.6.0"
+  },
+  "build": {
+    "appId": "com.metrix31.noteforge",
+    "productName": "NoteForge",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Office"
+    }
+  }
+}
