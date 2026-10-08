@@ -1,0 +1,1396 @@
+/* =========================================================
+    NoteForge - Desktop UI
+    OpenForge / Metrix31 Labs
+========================================================= */
+
+:root {
+    /* Backgrounds */
+    --bg-primary: #0b0f0e;
+    --bg-secondary: #111716;
+    --bg-tertiary: #171d1b;
+    --bg-hover: #1d2522;
+    --bg-active: #1b3028;
+
+    /* Borders */
+    --border: #27302d;
+    --border-light: #303a36;
+
+    /* Text */
+    --text-primary: #f1f5f3;
+    --text-secondary: #a8b3ae;
+    --text-muted: #6f7b76;
+
+    /* OpenForge Accent */
+    --accent: #3ddc97;
+    --accent-hover: #32c987;
+    --accent-dark: #183c2d;
+
+    /* Status */
+    --danger: #ff5c5c;
+    --danger-hover: #e94b4b;
+    --warning: #e8b84a;
+
+    /* Other */
+    --shadow: rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   Reset
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+
+    font-family:
+            Inter,
+            "Segoe UI",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+
+    font-size: 13px;
+
+    overflow: hidden;
+
+    user-select: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    user-select: none;
+}
+
+
+/* =========================================================
+   App Container
+   ========================================================= */
+
+.app-container {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--bg-primary);
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.app-header {
+    height: 58px;
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    background: var(--bg-secondary);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   Brand
+   ========================================================= */
+
+.app-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.app-logo {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--accent);
+    color: #07100c;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    box-shadow:
+            0 0 12px rgba(61, 220, 151, 0.12);
+}
+
+.app-name {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.app-name strong {
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 17px;
+}
+
+.app-name span {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    line-height: 13px;
+}
+
+
+/* =========================================================
+   Header Actions
+   ========================================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.btn {
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 11px;
+
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease,
+            transform 0.1s ease;
+}
+
+.btn:hover:not(:disabled) {
+    background: var(--bg-hover);
+
+    border-color: var(--border-light);
+
+    color: var(--text-primary);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+
+/* Primary */
+
+.btn.primary {
+    background: var(--accent);
+    color: #07100c;
+
+    border-color: var(--accent);
+
+    font-weight: 700;
+}
+
+.btn.primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+
+    border-color: var(--accent-hover);
+
+    color: #07100c;
+}
+
+.btn-icon {
+    font-size: 17px;
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+
+/* Danger */
+
+.btn.danger {
+    color: var(--danger);
+}
+
+.btn.danger:hover:not(:disabled) {
+    background: rgba(255, 92, 92, 0.08);
+
+    border-color: rgba(255, 92, 92, 0.35);
+
+    color: var(--danger);
+}
+
+
+/* =========================================================
+   Icon Button
+   ========================================================= */
+
+.icon-btn {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--text-muted);
+
+    border: 1px solid transparent;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease;
+}
+
+.icon-btn:hover:not(:disabled) {
+    background: var(--bg-hover);
+
+    border-color: var(--border);
+
+    color: var(--text-primary);
+}
+
+.icon-btn:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   Main Content
+   ========================================================= */
+
+.main-content {
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    background: var(--bg-primary);
+}
+
+
+/* =========================================================
+   Sidebar
+   ========================================================= */
+
+.sidebar {
+    width: 270px;
+    min-width: 270px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--bg-secondary);
+
+    border-right: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   Sidebar Header
+   ========================================================= */
+
+.sidebar-header {
+    height: 48px;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px 0 14px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--text-primary);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.note-count {
+    min-width: 19px;
+    height: 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* Favorite Filter */
+
+#favoriteFilterBtn.active {
+    background: var(--bg-active);
+
+    color: var(--accent);
+
+    border-color: var(--accent-dark);
+}
+
+
+/* =========================================================
+   Search
+   ========================================================= */
+
+.search-container {
+    padding: 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.search-wrapper {
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+
+    background: var(--bg-primary);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    transition:
+            border-color 0.15s ease,
+            background 0.15s ease;
+}
+
+.search-wrapper:focus-within {
+    background: var(--bg-tertiary);
+
+    border-color: var(--accent-dark);
+}
+
+.search-icon {
+    width: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-muted);
+
+    font-size: 17px;
+
+    pointer-events: none;
+}
+
+.search-wrapper input {
+    flex: 1;
+
+    width: 0;
+
+    padding: 0 9px 0 0;
+
+    background: transparent;
+    color: var(--text-primary);
+
+    border: none;
+    outline: none;
+
+    font-size: 12px;
+}
+
+.search-wrapper input::placeholder {
+    color: var(--text-muted);
+}
+
+
+/* =========================================================
+   Notes List
+   ========================================================= */
+
+.notes-container {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.notes-list {
+    list-style: none;
+
+    margin: 0;
+    padding: 6px;
+}
+
+
+/* Individual Note */
+
+.notes-list li {
+    position: relative;
+
+    min-height: 47px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-bottom: 2px;
+
+    padding: 9px 10px;
+
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition:
+            background 0.12s ease,
+            border-color 0.12s ease;
+}
+
+.notes-list li:hover {
+    background: var(--bg-hover);
+}
+
+.notes-list li.active {
+    background: var(--bg-active);
+
+    border-color: var(--accent-dark);
+}
+
+.notes-list li.active::before {
+    content: "";
+
+    position: absolute;
+
+    left: -1px;
+    top: 8px;
+    bottom: 8px;
+
+    width: 2px;
+
+    background: var(--accent);
+
+    border-radius: 2px;
+}
+
+
+/* Note Title */
+
+.notes-list li .title {
+    overflow: hidden;
+
+    color: var(--text-primary);
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* Favorite Note */
+
+.notes-list li.favorite .title::after {
+    content: " ★";
+
+    color: var(--accent);
+
+    font-size: 10px;
+}
+
+
+/* Empty State */
+
+.notes-list li.empty-state {
+    justify-content: center;
+
+    padding: 25px 15px;
+
+    color: var(--text-muted);
+
+    border: none;
+
+    cursor: default;
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+.notes-list li.empty-state:hover {
+    background: transparent;
+
+    color: var(--text-muted);
+}
+
+
+/* =========================================================
+   Sidebar Footer
+   ========================================================= */
+
+.sidebar-footer {
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 8px;
+
+    border-top: 1px solid var(--border);
+}
+
+.sidebar-action {
+    flex: 1;
+
+    height: 29px;
+
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+
+    border: 1px solid var(--border);
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease;
+}
+
+.sidebar-action:hover:not(:disabled) {
+    background: var(--bg-hover);
+
+    color: var(--text-secondary);
+
+    border-color: var(--border-light);
+}
+
+.sidebar-action:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+}
+
+.sidebar-action.danger-action {
+    color: var(--danger);
+}
+
+.sidebar-action.danger-action:hover {
+    background: rgba(255, 92, 92, 0.08);
+
+    border-color: rgba(255, 92, 92, 0.35);
+
+    color: var(--danger);
+}
+
+
+/* =========================================================
+   Editor
+   ========================================================= */
+
+.editor-container {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--bg-primary);
+}
+
+
+/* =========================================================
+   Editor Header
+   ========================================================= */
+
+.editor-header {
+    min-height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 9px 15px;
+
+    background: var(--bg-secondary);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.note-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 3px;
+}
+
+.note-title {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--text-primary);
+
+    border: none;
+    outline: none;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.note-title::placeholder {
+    color: var(--text-muted);
+}
+
+.note-title:disabled {
+    cursor: default;
+}
+
+.note-status {
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+
+/* Editor Actions */
+
+.editor-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 3px;
+
+    margin-left: 15px;
+}
+
+
+/* =========================================================
+   Text Editor
+   ========================================================= */
+
+#editor {
+    flex: 1;
+
+    width: 100%;
+    min-height: 0;
+
+    display: block;
+
+    padding: 22px 24px;
+
+    background: var(--bg-primary);
+    color: var(--text-primary);
+
+    border: none;
+    outline: none;
+
+    resize: none;
+
+    font-family:
+            Inter,
+            "Segoe UI",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    tab-size: 4;
+
+    overflow-y: auto;
+
+    user-select: text;
+}
+
+#editor::placeholder {
+    color: var(--text-muted);
+}
+
+#editor:disabled {
+    opacity: 0.45;
+
+    cursor: default;
+}
+
+
+/* =========================================================
+   Editor Footer
+   ========================================================= */
+
+.editor-footer {
+    height: 31px;
+    min-height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 16px;
+
+    padding: 0 15px;
+
+    background: var(--bg-secondary);
+
+    border-top: 1px solid var(--border);
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   Status Bar
+   ========================================================= */
+
+.status-bar {
+    height: 24px;
+    min-height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: var(--bg-tertiary);
+
+    border-top: 1px solid var(--border);
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+.status-left,
+.status-right {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.status-separator {
+    color: var(--border-light);
+}
+
+
+/* Status Indicator */
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+
+    background: var(--accent);
+
+    border-radius: 50%;
+
+    box-shadow:
+            0 0 6px rgba(61, 220, 151, 0.35);
+}
+
+.status-indicator.saving {
+    background: var(--warning);
+
+    box-shadow:
+            0 0 6px rgba(232, 184, 74, 0.35);
+}
+
+.status-indicator.error {
+    background: var(--danger);
+
+    box-shadow:
+            0 0 6px rgba(255, 92, 92, 0.35);
+}
+
+
+/* =========================================================
+   Modal Overlay
+   ========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 1000;
+
+    animation: modalFadeIn 0.12s ease;
+}
+
+
+/* =========================================================
+   Modal
+   ========================================================= */
+
+.modal {
+    width: 360px;
+    max-width: 100%;
+
+    padding: 20px;
+
+    background: var(--bg-secondary);
+
+    border: 1px solid var(--border-light);
+    border-radius: 9px;
+
+    box-shadow:
+            0 18px 45px var(--shadow),
+            0 0 0 1px rgba(255, 255, 255, 0.015);
+
+    animation: modalSlideIn 0.15s ease;
+}
+
+.modal h3 {
+    margin: 0 0 8px;
+
+    color: var(--text-primary);
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.modal p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   Modal Buttons
+   IMPORTANT:
+   app.js uses .modal-buttons
+   ========================================================= */
+
+.modal-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+
+/* Base modal button */
+
+.modal-buttons .modal-btn {
+    height: 32px;
+
+    min-width: 88px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 13px;
+
+    margin: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    font-family:
+            Inter,
+            "Segoe UI",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1;
+
+    box-shadow: none;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease,
+            transform 0.1s ease;
+}
+
+
+/* Modal button hover */
+
+.modal-buttons .modal-btn:hover {
+    background: var(--bg-hover);
+
+    border-color: var(--border-light);
+
+    color: var(--text-primary);
+}
+
+
+/* Modal button active */
+
+.modal-buttons .modal-btn:active {
+    transform: translateY(1px);
+}
+
+
+/* Cancel */
+
+.modal-buttons .modal-btn.cancel {
+    background: var(--bg-tertiary);
+
+    color: var(--text-secondary);
+
+    border-color: var(--border);
+}
+
+.modal-buttons .modal-btn.cancel:hover {
+    background: var(--bg-hover);
+
+    color: var(--text-primary);
+
+    border-color: var(--border-light);
+}
+
+
+/* Confirm / Delete */
+
+.modal-buttons .modal-btn.confirm {
+    background: var(--danger);
+
+    color: #ffffff;
+
+    border-color: var(--danger);
+
+    font-weight: 700;
+}
+
+.modal-buttons .modal-btn.confirm:hover {
+    background: var(--danger-hover);
+
+    color: #ffffff;
+
+    border-color: var(--danger-hover);
+}
+
+
+/* Keyboard Focus */
+
+.modal-buttons .modal-btn:focus-visible {
+    outline: 1px solid var(--accent);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   Color Modal
+   ========================================================= */
+
+.color-modal {
+    width: 380px;
+}
+
+.color-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 7px;
+
+    margin: 18px 0;
+}
+
+
+/* Color option */
+
+.color-option {
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 7px 10px;
+
+    margin: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-family:
+            Inter,
+            "Segoe UI",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    line-height: 1;
+
+    box-shadow: none;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease,
+            transform 0.1s ease;
+}
+
+.color-option:hover {
+    background: var(--bg-active);
+
+    border-color: var(--accent);
+
+    color: var(--text-primary);
+}
+
+.color-option:active {
+    transform: translateY(1px);
+}
+
+.color-option:focus-visible {
+    outline: 1px solid var(--accent);
+
+    outline-offset: 1px;
+}
+
+
+/* Color Preview */
+
+.color-preview {
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    border-radius: 5px;
+
+    border: 1px solid var(--border-light);
+
+    box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================================
+   Modal Inputs
+   ========================================================= */
+
+.modal input {
+    width: 100%;
+
+    height: 34px;
+
+    margin-top: 12px;
+
+    padding: 0 10px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: var(--bg-primary);
+    color: var(--text-primary);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    user-select: text;
+}
+
+.modal input::placeholder {
+    color: var(--text-muted);
+}
+
+.modal input:focus {
+    border-color: var(--accent-dark);
+}
+
+
+/* =========================================================
+   Global Button Normalization
+   Prevent native browser/Electron button styling
+   ========================================================= */
+
+button {
+    appearance: none;
+    -webkit-appearance: none;
+
+    font-family:
+            Inter,
+            "Segoe UI",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            sans-serif;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   Scrollbars
+   ========================================================= */
+
+* {
+    scrollbar-width: thin;
+
+    scrollbar-color:
+            var(--border-light)
+            transparent;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3a4641;
+}
+
+
+/* =========================================================
+   Focus
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 1px solid var(--accent);
+
+    outline-offset: 1px;
+}
+
+
+/* =========================================================
+   Animations
+   ========================================================= */
+
+@keyframes modalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes modalSlideIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+                translateY(5px)
+                scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+                translateY(0)
+                scale(1);
+    }
+}
+
+
+/* =========================================================
+   Responsive Fallback
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .header-actions .btn:not(.primary) {
+        display: none;
+    }
+
+    #editor {
+        padding: 18px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .sidebar {
+        width: 190px;
+        min-width: 190px;
+    }
+
+    .app-name span {
+        display: none;
+    }
+
+    .btn.primary {
+        padding: 0 9px;
+    }
+
+    .btn.primary .btn-icon {
+        display: none;
+    }
+}

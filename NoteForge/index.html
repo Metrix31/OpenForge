@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NoteForge</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- =====================================================
+         App Header
+         ===================================================== -->
+
+    <header class="app-header">
+
+        <div class="app-brand">
+            <div class="app-logo">N</div>
+
+            <div class="app-name">
+                <strong>NoteForge</strong>
+                <span>OpenForge</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                    id="newNoteBtn"
+                    class="btn primary"
+                    title="Neue Notiz"
+            >
+                <span class="btn-icon">+</span>
+                <span>Neue Notiz</span>
+            </button>
+
+            <button
+                    id="deleteBtn"
+                    class="btn danger"
+                    disabled
+                    title="Notiz löschen"
+            >
+                Löschen
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         Main Application
+         ===================================================== -->
+
+    <div class="main-content">
+
+
+        <!-- =================================================
+             Sidebar
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="sidebar-title">
+                    <span>Notizen</span>
+                    <span id="noteCount" class="note-count">0</span>
+                </div>
+
+                <button
+                        id="favoriteFilterBtn"
+                        class="icon-btn"
+                        title="Favoriten anzeigen"
+                >
+                    ★
+                </button>
+
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="search-container">
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Notizen durchsuchen..."
+                            autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Notes -->
+
+            <div class="notes-container">
+
+                <ul
+                        id="notesList"
+                        class="notes-list"
+                ></ul>
+
+            </div>
+
+
+            <!-- Sidebar Footer -->
+
+            <div class="sidebar-footer">
+
+                <button
+                        id="tagsBtn"
+                        class="sidebar-action"
+                        disabled
+                >
+                    <span>Tags</span>
+                </button>
+
+                <button
+                        id="deleteAllBtn"
+                        class="sidebar-action danger-action"
+                >
+                    Alle löschen
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             Editor
+             ================================================= -->
+
+        <main class="editor-container">
+
+
+            <!-- Editor Header -->
+
+            <div class="editor-header">
+
+                <div class="note-info">
+
+                    <input
+                            type="text"
+                            id="noteTitle"
+                            class="note-title"
+                            placeholder="Unbenannte Notiz"
+                            disabled
+                    >
+
+                    <span
+                            id="noteStatus"
+                            class="note-status"
+                    >
+                        Keine Notiz ausgewählt
+                    </span>
+
+                </div>
+
+
+                <div class="editor-actions">
+
+                    <button
+                            id="colorBtn"
+                            class="icon-btn"
+                            disabled
+                            title="Notizfarbe"
+                    >
+                        ●
+                    </button>
+
+                    <button
+                            id="favoriteBtn"
+                            class="icon-btn"
+                            disabled
+                            title="Favorit"
+                    >
+                        ☆
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Editor -->
+
+            <textarea
+                    id="editor"
+                    placeholder="Beginne deine Notiz..."
+                    disabled
+            ></textarea>
+
+
+            <!-- Editor Footer -->
+
+            <div class="editor-footer">
+
+                <span id="wordCount">
+                    0 Wörter
+                </span>
+
+                <span id="characterCount">
+                    0 Zeichen
+                </span>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         Status Bar
+         ===================================================== -->
+
+    <footer class="status-bar">
+
+        <div class="status-left">
+
+            <span
+                    id="statusIndicator"
+                    class="status-indicator"
+            ></span>
+
+            <span id="statusText">
+                Bereit
+            </span>
+
+        </div>
+
+        <div class="status-right">
+
+            <span>
+                NoteForge
+            </span>
+
+            <span class="status-separator">
+                |
+            </span>
+
+            <span>
+                OpenForge
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
