@@ -37,7 +37,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | VaultForge  | Password manager                        | ✅ Released |
 | OpenFetch | OpenForge app releases and downloads      | 🔨 In Developement ⚠️ Early Access |
 | OpenEdit   | Terminal text editor                     | ✅ Released |
-| NoteForge | Open-source markdown editor with gui | 🔨 In Developement |
+| NoteForge | Open-source markdown editor with gui | 🔨 In Developement ⚠️ Early Access |
 | ArchiveForge | Open-source ZIP, TAR, 7z program | 🚧 Planned |
 | CodeForge | Open-source IDE                     | 🚧 Planned |
 | OpenForge app | desktop gui for entire OpenForge | 🚧 Planned |
