@@ -32,7 +32,7 @@ CodeForge is a planned open-source integrated development environment (IDE) desi
 
 The final feature set and technology stack should be determined after evaluating existing solutions, performance requirements, and long-term maintainability.
 
-### ArchiveForge - Archive Management Utility
+### PackForge - Archive Management Utility
 
 **Category:** System Utilities
 **Status:** Planned
