@@ -39,7 +39,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | OpenEdit   | Terminal text editor                     | ✅ Released |
 | NoteForge | Open-source markdown editor with gui | ✅ Released |
 | PackForge | Open-source ZIP, TAR program | 🔨 In Developement |
-| CodeForge | Open-source IDE                     | 🚧 Planned |
+| Vyrnex Studio | Open-source IDE                     | 🔨 In Developement |
 | OpenForge app | desktop gui for entire OpenForge | 🚧 Planned |
 | AstraxOS    | Open-source operating system            | 🚧 Planned |
 | Coming soon | New tools are currently in development and planned. | 🚧 Planned |
