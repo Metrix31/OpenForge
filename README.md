@@ -38,7 +38,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | OpenFetch | OpenForge app releases and downloads      | 🔨 In Developement ⚠️ Early Access |
 | OpenEdit   | Terminal text editor                     | ✅ Released |
 | NoteForge | Open-source markdown editor with gui | ✅ Released |
-| PackForge | Open-source ZIP, TAR program | 🔨 In Developement |
+| PackForge | Open-source ZIP, TAR program | ✅ Released |
 | Vyrnex Studio | Open-source IDE                     | 🔨 In Developement |
 | OpenForge app | desktop gui for entire OpenForge | 🚧 Planned |
 | AstraxOS    | Open-source operating system            | 🚧 Planned |
