@@ -1,0 +1,343 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+          http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' http://127.0.0.1:5173 ws://127.0.0.1:5173"
+  />
+  <meta
+          name="description"
+          content="PackForge — a modern, open-source desktop archive manager."
+  />
+  <title>PackForge</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__icon" aria-hidden="true">P</div>
+      <div class="brand__text">
+        <strong>PackForge</strong>
+        <span>Archive Manager</span>
+      </div>
+    </div>
+
+    <p class="sidebar__label">WORKSPACE</p>
+
+    <nav class="navigation" aria-label="Main navigation">
+      <button
+              id="create-archive-nav"
+              class="nav-item nav-item--active"
+              type="button"
+              aria-current="page"
+      >
+        <span aria-hidden="true">◈</span>
+        Create Archive
+      </button>
+
+      <button
+              id="open-archives"
+              class="nav-item"
+              type="button"
+      >
+        <span aria-hidden="true">▤</span>
+        Open Archives
+      </button>
+    </nav>
+
+    <div class="sidebar__footer">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>PackForge</span>
+      <span class="version">v0.2.0</span>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">WORKSPACE / ARCHIVES</span>
+        <h1 id="page-title">Create Archive</h1>
+      </div>
+
+      <span class="platform-label">DESKTOP</span>
+    </header>
+
+    <section class="intro" id="create-intro">
+      <div class="intro__icon" aria-hidden="true">↗</div>
+      <div>
+        <h2>Your files. One archive.</h2>
+        <p>
+          Select a folder, choose an archive format,
+          and let PackForge handle the rest.
+        </p>
+      </div>
+    </section>
+
+    <!-- Create archive view -->
+    <section id="create-view" class="panel">
+      <div class="section-heading">
+        <span class="step">01</span>
+        <div>
+          <h2>Source Files</h2>
+          <p>Choose the folder you want to archive.</p>
+        </div>
+      </div>
+
+      <div class="folder-picker">
+        <div class="folder-icon" aria-hidden="true">▰</div>
+
+        <div class="folder-info">
+          <strong id="source-name">No folder selected</strong>
+          <span id="source-path">Choose a source folder to begin.</span>
+        </div>
+
+        <button
+                id="select-folder"
+                class="button button--secondary"
+                type="button"
+        >
+          Choose Folder
+        </button>
+      </div>
+
+      <div class="section-heading section-heading--spaced">
+        <span class="step">02</span>
+        <div>
+          <h2>Archive Format</h2>
+          <p>Select the format for your new archive.</p>
+        </div>
+      </div>
+
+      <div class="format-grid" role="group" aria-label="Archive format">
+        <button
+                class="format-card format-card--active"
+                data-format="zip"
+                type="button"
+                aria-pressed="true"
+        >
+          <span class="format-card__extension">ZIP</span>
+          <strong>ZIP Archive</strong>
+          <span>Compressed · Widely supported</span>
+        </button>
+
+        <button
+                class="format-card"
+                data-format="tar"
+                type="button"
+                aria-pressed="false"
+        >
+          <span class="format-card__extension">TAR</span>
+          <strong>TAR Archive</strong>
+          <span>Uncompressed · Unix</span>
+        </button>
+
+        <button
+                class="format-card"
+                data-format="tar.gz"
+                type="button"
+                aria-pressed="false"
+        >
+          <span class="format-card__extension">TGZ</span>
+          <strong>TAR.GZ Archive</strong>
+          <span>Compressed · Unix</span>
+        </button>
+      </div>
+
+      <div class="section-heading section-heading--spaced">
+        <span class="step">03</span>
+        <div>
+          <h2>Output</h2>
+          <p>Choose where to save the archive.</p>
+        </div>
+      </div>
+
+      <div class="output-row">
+        <div>
+          <span class="field-label">OUTPUT FILE</span>
+          <strong id="output-name">archive.zip</strong>
+        </div>
+
+        <button
+                id="select-output"
+                class="button button--secondary"
+                type="button"
+        >
+          Choose Location
+        </button>
+      </div>
+
+      <div id="create-progress-section" class="progress-section" hidden>
+        <div class="progress-heading">
+          <span id="create-progress-label">Preparing archive...</span>
+          <strong id="create-progress-percent">0%</strong>
+        </div>
+        <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Archive creation progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+        >
+          <div id="create-progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div
+              id="create-message"
+              class="message"
+              role="status"
+              aria-live="polite"
+      ></div>
+
+      <div class="panel__footer">
+            <span class="security-note">
+              <span class="status-dot" aria-hidden="true"></span>
+              Files are processed locally
+            </span>
+
+        <button
+                id="create-archive"
+                class="button button--primary"
+                type="button"
+                disabled
+        >
+          Create Archive <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Open and extract archives view -->
+    <section id="archive-browser" class="panel" hidden>
+      <div class="section-heading">
+        <span class="step">01</span>
+        <div>
+          <h2>Open Archive</h2>
+          <p>
+            Browse the contents of an existing ZIP, TAR, or TAR.GZ archive.
+          </p>
+        </div>
+      </div>
+
+      <div class="folder-picker">
+        <div class="folder-icon" aria-hidden="true">▤</div>
+
+        <div class="folder-info">
+          <strong id="archive-name">No archive selected</strong>
+          <span id="archive-path">
+                Select an archive to view its contents.
+              </span>
+        </div>
+
+        <button
+                id="select-archive"
+                class="button button--secondary"
+                type="button"
+        >
+          Browse Archives
+        </button>
+      </div>
+
+      <div class="section-heading section-heading--spaced">
+        <span class="step">02</span>
+        <div>
+          <h2>Archive Contents</h2>
+          <p id="archive-count">No entries loaded.</p>
+        </div>
+      </div>
+
+      <div id="archive-list-container" class="archive-list-container">
+        <div id="archive-empty" class="archive-empty">
+          <span aria-hidden="true">▤</span>
+          <strong>No archive opened</strong>
+          <p>Select an archive to display its files and folders.</p>
+        </div>
+
+        <ul
+                id="archive-entries"
+                class="archive-entries"
+                aria-label="Archive contents"
+        ></ul>
+      </div>
+
+      <div class="section-heading section-heading--spaced">
+        <span class="step">03</span>
+        <div>
+          <h2>Extraction Destination</h2>
+          <p>Choose a folder where the archive should be extracted.</p>
+        </div>
+      </div>
+
+      <div class="output-row">
+        <div>
+          <span class="field-label">DESTINATION</span>
+          <strong id="extract-destination-name">No destination selected</strong>
+          <span id="extract-destination-path" class="secondary-text">
+                Choose an extraction folder.
+              </span>
+        </div>
+
+        <button
+                id="select-extract-folder"
+                class="button button--secondary"
+                type="button"
+        >
+          Choose Folder
+        </button>
+      </div>
+
+      <div id="extract-progress-section" class="progress-section" hidden>
+        <div class="progress-heading">
+          <span id="extract-progress-label">Extracting archive...</span>
+          <strong id="extract-progress-percent">0%</strong>
+        </div>
+        <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Archive extraction progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+        >
+          <div id="extract-progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div
+              id="archive-message"
+              class="message"
+              role="status"
+              aria-live="polite"
+      ></div>
+
+      <div class="panel__footer">
+            <span class="security-note">
+              <span class="status-dot" aria-hidden="true"></span>
+              Local extraction
+            </span>
+
+        <button
+                id="extract-archive"
+                class="button button--primary"
+                type="button"
+                disabled
+        >
+          Extract Archive <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      PackForge <span>·</span> OpenForge Project
+    </footer>
+  </main>
+</div>
+
+<script type="module" src="./main.ts"></script>
+</body>
+</html>
