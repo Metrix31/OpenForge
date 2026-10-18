@@ -1,0 +1,232 @@
+/* Vyrnex Studio – Oberfläche
+   Tonale Ebenen statt Linien und Akzentfarben: Die Leisten sind dunkler als der Editor,
+   der Editor liegt wie ein Blatt darüber. Die Editorfläche selbst bleibt unverändert. */
+
+:root {
+  --font-ui: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --chrome: #0f1118;      /* Seitenleiste, Tab-Leiste, Statusleiste */
+  --bg: #14161f;          /* Editorfläche (muss zum Monaco-Theme passen) */
+  --text: #d3d7e2;
+  --muted: #777f96;
+  --faint: #4b5166;
+  --danger: #f0707f;
+
+  --hover: rgba(255, 255, 255, 0.045);
+  --active: rgba(255, 255, 255, 0.08);
+  --focus: rgba(211, 215, 226, 0.55);
+  --scroll: rgba(140, 148, 170, 0.26);
+  --scroll-hover: rgba(140, 148, 170, 0.48);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  --sidebar-width: 250px;
+  --bar-height: 35px;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --chrome: #e8ebf2;
+  --bg: #fafbfd;
+  --text: #272b38;
+  --muted: #667088;
+  --faint: #a4abbd;
+  --danger: #c0392b;
+
+  --hover: rgba(0, 0, 0, 0.05);
+  --active: rgba(0, 0, 0, 0.09);
+  --focus: rgba(39, 43, 56, 0.55);
+  --scroll: rgba(90, 98, 120, 0.3);
+  --scroll-hover: rgba(90, 98, 120, 0.5);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--chrome);
+  color: var(--text);
+  font: 13px/1.4 var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+  user-select: none;
+}
+
+::selection { background: rgba(130, 150, 200, 0.3); }
+
+button, select { font: inherit; color: inherit; }
+button:focus-visible, select:focus-visible, .row:focus-visible { outline: 1px solid var(--focus); outline-offset: -1px; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scroll); border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: var(--scroll-hover); border: 2px solid transparent; background-clip: padding-box; }
+
+#app { display: flex; flex-direction: column; height: 100%; }
+#workbench { flex: 1; display: flex; min-height: 0; }
+
+/* ---------------------------------------------------------------- Seitenleiste */
+#sidebar { flex: none; width: var(--sidebar-width); min-width: 0; display: flex; flex-direction: column; background: var(--chrome); }
+body:not(.has-sidebar) #sidebar,
+body:not(.has-sidebar) #splitter { display: none; }
+
+#splitter { position: relative; flex: none; width: 1px; background: transparent; cursor: col-resize; }
+#splitter::after { content: ''; position: absolute; top: 0; bottom: 0; left: -3px; right: -3px; }
+#splitter:hover, body.resizing #splitter { background: var(--faint); }
+body.resizing { cursor: col-resize; }
+
+.sidebar-header { flex: none; height: var(--bar-height); display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 8px; }
+.sidebar-actions { display: flex; gap: 2px; }
+
+.icon-btn { display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 5px; background: none; color: var(--muted); cursor: pointer; }
+.icon-btn:hover { background: var(--hover); color: var(--text); }
+.icon-btn:active { background: var(--active); }
+
+#explorer { flex: 1; overflow: auto; padding: 2px 0 12px; }
+body.view-search #explorer, body.view-search .sidebar-actions { display: none; }
+.root-label { padding: 2px 14px 6px; overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
+
+.row { display: flex; align-items: center; height: 24px; margin: 0 6px; padding-right: 8px; border-radius: 5px; white-space: nowrap; cursor: pointer; }
+.row:hover { background: var(--hover); }
+.row.selected { background: var(--active); }
+.row .label { overflow: hidden; text-overflow: ellipsis; }
+
+/* Pfeil per CSS gezeichnet statt Textzeichen */
+.row .chevron { position: relative; flex: none; width: 16px; height: 16px; margin-right: 2px; font-size: 0; color: var(--muted); }
+.row.dir .chevron::before { content: ''; position: absolute; left: 4px; top: 5px; width: 5px; height: 5px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); }
+.row.dir.open .chevron::before { left: 5px; top: 4px; transform: rotate(45deg); }
+
+.explorer-error { padding: 4px 14px; color: var(--danger); }
+.empty-explorer { padding: 8px 14px; color: var(--muted); }
+.empty-explorer button { margin-top: 10px; padding: 4px 12px; border: 0; border-radius: 5px; background: var(--active); color: var(--text); cursor: pointer; }
+.empty-explorer button:hover { background: var(--faint); }
+
+/* ---------------------------------------------------------------- Tabs */
+#main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+#tabs { flex: none; height: var(--bar-height); display: flex; align-items: flex-end; gap: 2px; padding: 5px 8px 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; background: var(--chrome); }
+#tabs::-webkit-scrollbar { display: none; }
+
+/* Aktiver Tab hat die Farbe des Editors und geht nahtlos in ihn über */
+.tab { flex: none; display: flex; align-items: center; gap: 4px; height: 30px; max-width: 220px; padding: 0 4px 0 12px; border-radius: 6px 6px 0 0; color: var(--muted); cursor: pointer; }
+.tab:hover { background: var(--hover); color: var(--text); }
+.tab.active { background: var(--bg); color: var(--text); }
+.tab .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.tab .close { display: grid; place-items: center; width: 18px; height: 18px; padding: 0; border: 0; border-radius: 4px; background: none; color: inherit; font-size: 14px; line-height: 1; cursor: pointer; opacity: 0; }
+.tab.active .close, .tab:hover .close { opacity: 1; }
+.tab .close:hover { background: var(--active); }
+/* Ungespeichert: Punkt statt ×, beim Darüberfahren wieder × */
+.tab.dirty:not(:hover) .close { opacity: 1; font-size: 0; }
+.tab.dirty:not(:hover) .close::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+#editor-wrap { position: relative; flex: 1; min-height: 0; background: var(--bg); border-top-left-radius: 8px; }
+#editor { position: absolute; inset: 0; user-select: text; }
+body:not(.has-tabs) #editor { visibility: hidden; }
+body.has-tabs #welcome { display: none; }
+
+/* ---------------------------------------------------------------- Startseite */
+/* Zwei Spalten: Aktion rechtsbündig, Tastenkürzel linksbündig, ohne Rahmen */
+#welcome { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.welcome-box { width: min(420px, 90%); }
+.welcome-box h1 { margin: 0 0 18px; color: var(--muted); font-size: 13px; font-weight: 400; text-align: center; }
+.welcome-box p { margin: 20px 0 0; color: var(--faint); text-align: center; }
+.welcome-box ul { margin: 0; padding: 0; list-style: none; }
+.welcome-box li { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; align-items: center; height: 28px; }
+.welcome-box button { justify-self: end; padding: 0; border: 0; background: none; color: var(--text); cursor: pointer; }
+.welcome-box button:hover { text-decoration: underline; text-underline-offset: 3px; }
+kbd { color: var(--muted); font: inherit; }
+
+/* ---------------------------------------------------------------- Drop-Hinweis */
+body.dragging #editor-wrap::after {
+  content: 'Drop to open';
+  position: absolute; inset: 8px; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--faint); border-radius: 6px;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  color: var(--text);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- Statusleiste */
+#statusbar { flex: none; height: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 6px 0 14px; background: var(--chrome); color: var(--muted); font-size: 12px; }
+.status-left, .status-right { display: flex; align-items: center; min-width: 0; height: 100%; }
+#st-folder { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#st-msg { margin-left: 12px; color: var(--text); white-space: nowrap; }
+.st-item, #st-sel { padding: 0 8px; white-space: nowrap; }
+
+.st-btn { height: 20px; margin: 0 1px; padding: 0 8px; border: 0; border-radius: 4px; background: none; color: inherit; white-space: nowrap; cursor: pointer; }
+.st-btn:hover { background: var(--hover); color: var(--text); }
+select.st-btn { max-width: 160px; padding-right: 4px; -webkit-appearance: none; appearance: none; text-align: center; }
+select.st-btn option { background: var(--chrome); color: var(--text); }
+
+/* ---------------------------------------------------------------- Hinweise */
+#toasts { position: fixed; right: 12px; bottom: 34px; z-index: 100; display: flex; flex-direction: column; gap: 6px; max-width: 420px; }
+.toast { padding: 9px 14px; border-radius: 6px; background: var(--chrome); color: var(--text); box-shadow: var(--shadow), 0 0 0 1px var(--active); user-select: text; }
+.toast.error { box-shadow: var(--shadow), 0 0 0 1px var(--danger); }
+
+/* ---------------------------------------------------------------- Sidebar views */
+.view-switch { display: flex; gap: 2px; }
+.view-tab { height: 24px; padding: 0 8px; border: 0; border-radius: 5px; background: none; color: var(--muted); cursor: pointer; }
+.view-tab:hover { color: var(--text); }
+.view-tab[aria-selected='true'] { background: var(--active); color: var(--text); }
+
+#search-view { display: none; flex: 1; min-height: 0; flex-direction: column; }
+body.view-search #search-view { display: flex; }
+.search-box { display: flex; gap: 4px; padding: 2px 8px 6px; }
+#search-input { flex: 1; min-width: 0; height: 26px; padding: 0 8px; border: 1px solid var(--active); border-radius: 5px; outline: 0; background: var(--bg); color: var(--text); font: inherit; user-select: text; }
+#search-input:focus { border-color: var(--faint); }
+#search-input::placeholder { color: var(--faint); }
+.icon-btn[aria-pressed='true'] { background: var(--active); color: var(--text); }
+#search-case { width: 28px; font-size: 12px; }
+#search-status { padding: 2px 14px 6px; color: var(--muted); }
+#search-results { flex: 1; overflow: auto; padding-bottom: 12px; }
+.sr-file { display: flex; align-items: center; gap: 8px; height: 24px; margin-top: 2px; padding: 0 12px 0 14px; overflow: hidden; white-space: nowrap; }
+.sr-file .dir { overflow: hidden; color: var(--muted); text-overflow: ellipsis; }
+.sr-count { margin-left: auto; color: var(--muted); }
+.sr-match { display: flex; align-items: center; gap: 8px; height: 22px; margin: 0 6px; padding: 0 8px 0 14px; border-radius: 5px; overflow: hidden; white-space: nowrap; cursor: pointer; }
+.sr-match:hover { background: var(--hover); }
+.sr-line { flex: none; min-width: 28px; color: var(--muted); text-align: right; }
+.sr-text { overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------------------------------------------------------------- Terminal panel */
+#panel-splitter { display: none; position: relative; flex: none; height: 1px; background: var(--active); cursor: row-resize; }
+#panel-splitter::after { content: ''; position: absolute; left: 0; right: 0; top: -3px; bottom: -3px; }
+#panel-splitter:hover, #panel-splitter.dragging { background: var(--faint); }
+body.resizing #panel-splitter { cursor: row-resize; }
+#panel { display: none; flex: none; height: var(--panel-height); flex-direction: column; background: var(--bg); }
+body.has-panel #panel { display: flex; }
+body.has-panel #panel-splitter { display: block; }
+
+.panel-header { flex: none; height: 32px; display: flex; align-items: center; justify-content: space-between; padding: 0 6px 0 8px; background: var(--chrome); }
+#term-tabs { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.term-tab { display: flex; align-items: center; gap: 4px; flex: none; height: 24px; padding: 0 4px 0 10px; border-radius: 5px; color: var(--muted); cursor: pointer; }
+.term-tab:hover { background: var(--hover); color: var(--text); }
+.term-tab.active { background: var(--active); color: var(--text); }
+.term-tab .close { display: grid; place-items: center; width: 18px; height: 18px; padding: 0; border: 0; border-radius: 4px; background: none; color: inherit; font-size: 14px; line-height: 1; cursor: pointer; opacity: 0; }
+.term-tab.active .close, .term-tab:hover .close { opacity: 1; }
+.term-tab .close:hover { background: var(--active); }
+.panel-actions { display: flex; gap: 2px; }
+
+#terminals { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.term-instance { position: absolute; inset: 6px 0 0 12px; display: none; user-select: text; }
+.term-instance.active { display: block; }
+.xterm .xterm-viewport { background-color: transparent !important; }
+
+/* ---------------------------------------------------------------- Command palette */
+#palette { position: fixed; inset: 0; z-index: 200; display: flex; align-items: flex-start; justify-content: center; padding-top: 10vh; }
+#palette[hidden] { display: none; }
+.palette-box { display: flex; flex-direction: column; width: min(620px, 92vw); max-height: 60vh; overflow: hidden; border-radius: 8px; background: var(--chrome); box-shadow: var(--shadow), 0 0 0 1px var(--active); }
+#palette-input { flex: none; height: 38px; padding: 0 14px; border: 0; border-bottom: 1px solid var(--active); outline: 0; background: transparent; color: var(--text); font: inherit; font-size: 14px; user-select: text; }
+#palette-input::placeholder { color: var(--faint); }
+#palette-list { margin: 0; padding: 4px; overflow: auto; list-style: none; }
+.palette-item { display: flex; align-items: center; gap: 10px; height: 28px; padding: 0 10px; border-radius: 5px; white-space: nowrap; cursor: pointer; }
+.palette-item.selected { background: var(--active); }
+.p-label { flex: none; max-width: 75%; overflow: hidden; text-overflow: ellipsis; }
+.p-detail { flex: 1; min-width: 0; overflow: hidden; color: var(--muted); text-overflow: ellipsis; }
+.p-keys { flex: none; margin-left: auto; color: var(--muted); }
+.palette-empty { padding: 8px 10px; color: var(--muted); }
