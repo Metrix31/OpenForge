@@ -35,13 +35,14 @@ Each project is designed to solve real problems and provide practical alternativ
 | Project     | Description                             | Status     |
 | ----------- | --------------------------------------- | ---------- |
 | VaultForge  | Password manager                        | ✅ Released |
-| OpenFetch   | OpenForge app releases and downloads      | 🔨 In Developement ⚠️ Early Access |
-| OpenEdit    | Terminal text editor                     | ✅ Released |
-| NoteForge   | Open-source markdown editor with gui      | ✅ Released |
-| PackForge   | Open-source ZIP, TAR program              | ✅ Released |
+| OpenFetch   | OpenForge app releases and downloads    | 🔨 In Developement ⚠️ Early Access |
+| OpenEdit    | Terminal text editor                    | ✅ Released |
+| NoteForge   | Open-source markdown editor with gui    | ✅ Released |
+| PackForge   | Open-source ZIP, TAR program            | ✅ Released |
 | Vyrnex Studio | Open-source IDE                       | 🔨 In Developement ⚠️ Early Access |
-| CinderMind  | Open-source AI-Harness                   | 🚧 Planned |
-| OpenForge app | desktop gui for entire OpenForge | 🚧 Planned |
+| ???         | Open-source OSINT tools                 | 🚧 Planned |
+| CinderMind  | Open-source AI-Harness                  | 🚧 Planned |
+| OpenForge app | desktop gui for entire OpenForge      | 🚧 Planned |
 | AstraxOS    | Open-source operating system            | 🚧 Planned |
 | Coming soon | New tools are currently in development and planned. | 🚧 Planned |
 
