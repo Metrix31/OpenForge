@@ -35,7 +35,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | Project     | Description                             | Status     |
 | ----------- | --------------------------------------- | ---------- |
 | VaultForge  | Password manager                        | ✅ Released |
-| OpenFetch   | OpenForge app releases and downloads    | 🔨 In Developement |
+| OpenFetch   | OpenForge app releases and downloads    | ✅ Released |
 | OpenEdit    | Terminal text editor                    | ✅ Released |
 | NoteForge   | Open-source markdown editor with gui    | ✅ Released |
 | PackForge   | Open-source ZIP, TAR program            | ✅ Released |
