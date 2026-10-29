@@ -1,0 +1,32 @@
+{
+  "name": "openfetch",
+  "version": "0.1.0",
+  "description": "Download release assets from a configured GitHub repository.",
+  "license": "Apache-2.0",
+  "author": "Metrix31 Labs",
+  "main": "src/index.js",
+  "bin": {
+    "openfetch": "src/cli/main.js"
+  },
+  "files": [
+    "src",
+    "openfetch.config.example.json",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "start": "node src/cli/main.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "github",
+    "releases",
+    "download",
+    "cli",
+    "openforge"
+  ]
+}
