@@ -43,7 +43,7 @@ Each project is designed to solve real problems and provide practical alternativ
 | ???         | Open-source OSINT tools **(OTHER REPO)** | 🚧 Planned |
 | CinderMind  | Open-source AI-Harness                  | 🚧 Planned |
 | OpenForge app | desktop gui for entire OpenForge      | 🚧 Planned |
-| AstraxOS    | Open-source operating system            | 🚧 Planned |
+| AstraxOS    | Open-source linux distro         | 🚧 Planned |
 | Coming soon | New tools are currently in development and planned. | 🚧 Planned |
 
 More projects will be announced as development progresses.
